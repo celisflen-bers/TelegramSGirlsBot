@@ -41,10 +41,10 @@ def search_suicides(suicide):
     return suicide
 
 def start(bot, update):
-    bot.sendMessage(update.message.chat_id, text="Hi! To get a random suicide girl, type <b>/random</b>. To get a specific Suicide Girl, type /suicide 'name'. For example, <b>/suicide bixon</b>. Enjoy!", parse_mode=telegram.ParseMode.HTML)
+    bot.sendMessage(update.message.chat_id, text="Hi! To get a random suicide girl, type <b>/random</b>. To get a specific Suicide Girl, type /suicide 'name'. For example, <b>/suicide bixton</b>. Enjoy!", parse_mode=telegram.ParseMode.HTML)
 
 def help(bot, update):
-    bot.sendMessage(update.message.chat_id, text="To get a random suicide girl, type <b>/random</b>. To get a specific Suicide Girl, type /suicide 'name'. For example, <b>/suicide bixon</b>.", parse_mode=telegram.ParseMode.HTML)
+    bot.sendMessage(update.message.chat_id, text="To get a random suicide girl, type <b>/random</b>. To get a specific Suicide Girl, type /suicide 'name'. For example, <b>/suicide bixton</b>.", parse_mode=telegram.ParseMode.HTML)
 
 def random(bot, update):
     suicides = all_suicides()
