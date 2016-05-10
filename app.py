@@ -1,12 +1,10 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from python_telegram_bot import telegram
 import logging
 import requests
 import json
 import secrets
 from random import randint
 
-bot = telegram.Bot(token=secrets.bot_token)
 # Enable logging
 logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -53,8 +51,8 @@ def random(bot, update):
             url = random_suicide['url']
     else:
         url = random_suicide['url'] + '.jpg'
-    bot.sendPhoto(chat_id=update.message.chat_id, photo=random_suicide['url'], text=random_suicide['title'])
-    bot.sendMessage(update.message.chat_id, text=random_suicide['title'])
+    bot.sendMessage(chat_id=update.message.chat_id, text="{title}\n {url}".format(title=random_suicide['title'], url=url))
+    #bot.sendPhoto(chat_id=update.message.chat_id, photo=url, caption=random_suicide['title'])
 
 def suicide(bot, update):
     suicide = update.message.text[9:]
@@ -70,8 +68,8 @@ def suicide(bot, update):
                 url = random_suicide['url']
             else:
                 url = random_suicide['url'] + '.jpg'
-            bot.sendPhoto(chat_id=update.message.chat_id, photo=url)
-            bot.sendMessage(update.message.chat_id, text=random_suicide['title'])
+            bot.sendMessage(chat_id=update.message.chat_id, text="{title}\n {url}".format(title=random_suicide['title'], url=url))
+            #bot.sendPhoto(chat_id=update.message.chat_id, photo=url, caption=random_suicide['title'])
 
 def echo(bot, update):
     bot.sendMessage(update.message.chat_id, text="Please, use /random or /suicide 'name'")
@@ -84,7 +82,7 @@ def error(bot, update, error):
 
 def main():
     # Create the EventHandler and pass it your bot's token.
-    updater = Updater(secrets.bot_token)
+    updater = Updater('TOKEN')
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
